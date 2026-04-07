@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>NCERT CBSE Tutor Hub | Classes UKG - 5th</title>
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e9eef5 100%);
+      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+      padding: 1.5rem;
+      min-height: 100vh;
+      color: #1e2a3e;
+    }
+
+    .app-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* header */
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #0f5c4b, #1e7a5c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero h1 i {
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #1e7a5c;
+    }
+    .hero p {
+      color: #4a5b6e;
+      margin-top: 6px;
+    }
+
+    /* main card */
+    .dashboard {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(6px);
+      border-radius: 48px;
+      padding: 1.8rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    /* selector row */
+    .selectors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      background: #f0f4f9;
+      padding: 1rem;
+      border-radius: 80px;
+    }
+    .select-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      padding: 0.3rem 1.2rem;
+      border-radius: 50px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .select-group label {
+      font-weight: 600;
+      color: #1e7a5c;
+    }
+    select {
+      background: #fef9e6;
+      border: 1px solid #d4d9e2;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
+    }
+    select:focus {
+      border-color: #1e7a5c;
+    }
+
+    /* main grid: left panel (chapters) + right panel (content) */
+    .tutor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 1.8rem;
+    }
+
+    /* chapter list panel */
+    .chapters-panel {
+      background: white;
+      border-radius: 32px;
+      padding: 1.2rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+    .chapters-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid #e0e7ff;
+      padding-bottom: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .chapters-header h3 {
+      font-size: 1.3rem;
+      color: #0f5c4b;
+    }
+    .pdf-badge {
+      font-size: 0.7rem;
+      background: #eef2ff;
+      padding: 4px 10px;
+      border-radius: 50px;
+      color: #1e7a5c;
+    }
+    .chapter-list {
+      max-height: 520px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .chapter-item {
+      background: #f9fafc;
+      margin: 10px 0;
+      padding: 12px 16px;
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid #eef2f6;
+    }
+    .chapter-item:hover {
+      background: #eef4ff;
+      transform: translateX(4px);
+    }
+    .chapter-item.active {
+      background: #1e7a5c15;
+      border-left: 4px solid #1e7a5c;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .chapter-name {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chapter-name i {
+      color: #1e7a5c;
+      font-size: 1.1rem;
+    }
+    .pdf-icon {
+      color: #e53e3e;
+      font-size: 0.9rem;
+    }
+
+    /* right panel */
+    .content-panel {
+      background: white;
+      border-radius: 32px;
+      padding: 1.4rem 1.6rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+    .section-tabs {
+      display: flex;
+      gap: 12px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 1.5rem;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      color: #4b5563;
+      transition: 0.2s;
+    }
+    .tab-btn.active {
+      background: #1e7a5c;
+      color: white;
+      box-shadow: 0 4px 8px rgba(30,122,92,0.2);
+    }
+    .tab-content {
+      display: none;
+      animation: fade 0.2s ease;
+    }
+    .tab-content.active-tab {
+      display: block;
+    }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* question answer section */
+    .qa-item {
+      background: #f8fafc;
+      border-radius: 28px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      border: 1px solid #eef2f8;
+    }
+    .qa-question {
+      font-weight: 700;
+      color: #0f5c4b;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .qa-answer {
+      margin-top: 12px;
+      padding-top: 8px;
+      border-top: 1px dashed #cbd5e1;
+      color: #2d3a48;
+      line-height: 1.5;
+      display: none;
+    }
+    .qa-answer.show {
+      display: block;
+    }
+
+    /* monthly test */
+    .test-card {
+      background: linear-gradient(145deg, #fefce8, #fff9e6);
+      border-radius: 28px;
+      padding: 1.4rem;
+    }
+    .test-question {
+      font-weight: 700;
+      margin: 1rem 0 0.5rem;
+    }
+    .test-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .test-option {
+      background: white;
+      padding: 6px 16px;
+      border-radius: 40px;
+      border: 1px solid #cbd5e1;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+    .test-option.correct {
+      background: #1e7a5c;
+      color: white;
+      border-color: #1e7a5c;
+    }
+    .test-option.wrong {
+      background: #fecaca;
+      color: #991b1b;
+      border-color: #f87171;
+    }
+    .explanation {
+      font-size: 0.9rem;
+      margin-top: 10px;
+      color: #475569;
+    }
+    .info-text {
+      background: #eef2ff;
+      border-radius: 24px;
+      padding: 1rem;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 780px) {
+      .tutor-grid {
+        grid-template-columns: 1fr;
+      }
+      body {
+        padding: 0.8rem;
+      }
+      .select-group {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #5b6e8c;
+    }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <div class="hero">
+    <h1><i class="fas fa-graduation-cap"></i> NCERT CBSE Tutor Hub <i class="fas fa-book-open"></i></h1>
+    <p>UKG to 5th Class | Chapter-wise Q&A · Monthly Tests · Study Resources</p>
+  </div>
+
+  <div class="dashboard">
+    <div class="selectors">
+      <div class="select-group">
+        <label><i class="fas fa-layer-group"></i> Class</label>
+        <select id="classSelect"></select>
+      </div>
+      <div class="select-group">
+        <label><i class="fas fa-subject"></i> Subject</label>
+        <select id="subjectSelect"></select>
+      </div>
+    </div>
+
+    <div class="tutor-grid">
+      <!-- LEFT: CHAPTERS PANEL -->
+      <div class="chapters-panel">
+        <div class="chapters-header">
+          <h3><i class="fas fa-list-ul"></i> 📖 Chapters & PDF</h3>
+          <div class="pdf-badge"><i class="fas fa-file-pdf"></i> NCERT Books</div>
+        </div>
+        <div id="chapterList" class="chapter-list">
+          <!-- dynamic chapters -->
+        </div>
+        <div class="info-text" style="margin-top: 1rem; font-size: 0.8rem;">
+          <i class="fas fa-info-circle"></i> Click any chapter to see Q&A, Monthly Test & extra info.
+        </div>
+      </div>
+
+      <!-- RIGHT: DETAILS -->
+      <div class="content-panel">
+        <div class="section-tabs">
+          <button class="tab-btn active" data-tab="qa"><i class="fas fa-question-circle"></i> Q&A</button>
+          <button class="tab-btn" data-tab="test"><i class="fas fa-calendar-alt"></i> Monthly Test</button>
+          <button class="tab-btn" data-tab="info"><i class="fas fa-info-circle"></i> Extra Info</button>
+        </div>
+
+        <!-- Q&A TAB -->
+        <div id="qaTab" class="tab-content active-tab">
+          <div id="qaContainer">Select a chapter to view important questions & answers.</div>
+        </div>
+
+        <!-- MONTHLY TEST TAB -->
+        <div id="testTab" class="tab-content">
+          <div id="testContainer">Choose a chapter to attempt a quick MCQ test.</div>
+        </div>
+
+        <!-- EXTRA INFO TAB -->
+        <div id="infoTab" class="tab-content">
+          <div id="infoContainer">Additional learning resources, tips and explanations appear here.</div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <i class="fas fa-chalkboard-user"></i> NCERT CBSE aligned · UKG to Class 5 · Created for young scholars
+    </footer>
+  </div>
+</div>
+
+<script>
+  // --------------------------------------------------------------
+  // DYNAMIC SYLLABUS DATABASE (UKG to Class 5) with chapters, Q&A, test MCQs, extra info
+  // For each class + subject: chapters (names), plus embedded QA, test, info
+  // --------------------------------------------------------------
+  const syllabusData = {
+    // UKG subjects: English, Maths, General Awareness, EVS
+    UKG: {
+      English: {
+        chapters: ["Letters (AA-ZZ)", "Vowels & Consonants", "Rhyming Words", "This/That & These/Those", "Picture Composition"],
+        qa: {
+          "Letters (AA-ZZ)": { qa: [{ q: "What are the vowels?", a: "A, E, I, O, U are vowels." }, { q: "How many letters in English alphabet?", a: "26 letters." }], test: { q: "Which letter is a vowel?", options: ["B", "C", "A", "D"], correct: "A", explanation: "A, E, I, O, U are vowels." }, info: "Practice writing both capital and small letters daily." },
+          "Vowels & Consonants": { qa: [{ q: "Name any two consonants.", a: "B, C, D etc." }], test: { q: "Which is a consonant?", options: ["A", "E", "M", "I"], correct: "M", explanation: "M is a consonant, rest are vowels." }, info: "Use colorful worksheets to identify vowels." }
+        },
+        GeneralAwareness: { chapters: ["Myself & Body Parts", "Seasons", "Transport", "Animals"], qa: {}, test: {}, info: "" },
+        EVS: { chapters: ["My Family", "My School", "Traffic Rules", "Living & Non-living"], qa: {}, test: {}, info: "" }
+      },
+      // default fill for other subjects
+      Maths: { chapters: ["Numbers 1-100", "Shapes", "Addition", "Subtraction", "Time"], qa: {}, test: {}, info: "Use number charts to practice counting." },
+      GeneralAwareness: { chapters: ["Myself & Body Parts", "Seasons", "Transport", "Animals"], qa: {}, test: {}, info: "Explore flashcards for general awareness." },
+      EVS: { chapters: ["My Family", "My School", "Traffic Rules", "Living & Non-living"], qa: {}, test: {}, info: "Observe things around you and classify." }
+    },
+    Class1: {
+      English: { chapters: ["Two Little Hands", "Greetings", "Picture Time", "The Food We Eat", "Anandi's Rainbow"], qa: { "Two Little Hands": { qa: [{ q: "What can we do with our hands?", a: "We can clap, wave and hold things." }], test: { q: "How many hands do you have?", options: ["1","2","3","4"], correct: "2", explanation: "Humans have two hands." }, info: "Sing the 'Two Little Hands' poem daily." } }, test: {}, info: "" },
+      Maths: { chapters: ["Finding the Furry Cat", "Shapes Around Us", "Mango Treat", "Making 10", "Fun with Numbers"], qa: { "Shapes Around Us": { qa: [{ q: "Name a shape with 3 sides.", a: "Triangle" }], test: { q: "Which shape has no corners?", options: ["Square","Circle","Triangle","Rectangle"], correct: "Circle", explanation: "Circle is round with no corners." }, info: "Collect objects of different shapes from home." } }, test: {}, info: "" },
+      EVS: { chapters: ["My Body", "Food We Eat", "Clothes", "Festivals"], qa: {}, test: {}, info: "" },
+      Hindi: { chapters: ["अ से अनार", "आ से आम", "इ से इमली"], qa: {}, test: {}, info: "" }
+    },
+    Class2: {
+      English: { chapters: ["First Day at School", "Haldi's Adventure", "I am Lucky", "The Wind and the Sun", "Strange Talk"], qa: { "First Day at School": { qa: [{ q: "How did the child feel on first day?", a: "Nervous but excited." }], test: { q: "What did the child draw?", options: ["A car","A house","A flower","A tree"], correct: "A house", explanation: "In the poem, the child drew a house." }, info: "Talk about your own first school day." } }, test: {}, info: "" },
+      Maths: { chapters: ["Counting in Groups", "Shapes and Patterns", "Addition", "Subtraction", "Time and Calendar"], qa: {}, test: {}, info: "Practice mental math for 2-digit numbers." },
+      EVS: { chapters: ["Our Neighbourhood", "Plants Around Us", "Water", "Air"], qa: {}, test: {}, info: "" }
+    },
+    Class3: {
+      English: { chapters: ["Colours", "Badal and Moti", "Best Friends", "Out in the Garden", "Talking Toys"], qa: { "Best Friends": { qa: [{ q: "Who are the best friends in the story?", a: "A boy and his dog." }], test: { q: "What quality do best friends share?", options: ["Jealousy","Trust","Anger","Fear"], correct: "Trust", explanation: "Friendship is built on trust and care." }, info: "Write about your best friend." } }, test: {}, info: "" },
+      Maths: { chapters: ["Where to Look From", "Fun With Numbers", "Give and Take", "Long and Short", "Smart Charts"], qa: {}, test: {}, info: "Use play-doh to understand shapes and numbers." },
+      EVS: { chapters: ["Poonam’s Day out", "The Plant Fairy", "Water O’ Water!", "Our First School"], qa: {}, test: {}, info: "Observe different plants in your garden." }
+    },
+    Class4: {
+      English: { chapters: ["Wake Up!", "Neha's Alarm Clock", "Noses", "The Little Fir Tree", "Alice in Wonderland"], qa: { "Neha's Alarm Clock": { qa: [{ q: "Why did Neha wake up late?", a: "Her alarm clock did not ring." }], test: { q: "What time did Neha wake up?", options: ["6 AM","7 AM","8 AM","9 AM"], correct: "7 AM", explanation: "The story shows she woke up at 7 AM." }, info: "Learn the importance of punctuality." } }, test: {}, info: "" },
+      Maths: { chapters: ["Shapes Around Us", "Hide and Seek", "Pattern Around Us", "Thousands Around Us", "Data Handling"], qa: { "Thousands Around Us": { qa: [{ q: "How many hundreds make 1000?", a: "10 hundreds." }], test: { q: "What is the place value of 7 in 7,892?", options: ["7","70","700","7000"], correct: "7000", explanation: "7 is in thousands place." }, info: "Practice writing 4-digit numbers." } }, test: {}, info: "" },
+      EVS: { chapters: ["The World Around Us", "Food for Health", "Our Environment"], qa: {}, test: {}, info: "Collect pictures of different environments." }
+    },
+    Class5: {
+      English: { chapters: ["Ice Cream Man", "Wonderful Waste", "Flying Together", "Robinson Crusoe", "Sing a Song of People"], qa: { "Ice Cream Man": { qa: [{ q: "What does the ice-cream man sell?", a: "Ice creams, kulfi and cold drinks." }], test: { q: "Which flavour is mentioned?", options: ["Chocolate","Vanilla","Strawberry","Mango"], correct: "Vanilla", explanation: "The poem mentions vanilla ice cream." }, info: "Write a short poem about summer." } }, test: {}, info: "" },
+      Maths: { chapters: ["The Fish Tale", "Shapes And Angles", "How Many Squares", "Parts and Wholes", "Boxes and Sketches"], qa: { "Parts and Wholes": { qa: [{ q: "If you cut a pizza into 4 equal parts, each part is called?", a: "One-fourth or quarter." }], test: { q: "Which fraction is equal to 1/2?", options: ["2/4","3/4","1/4","4/4"], correct: "2/4", explanation: "2/4 simplifies to 1/2." }, info: "Practice fractions using daily objects." } }, test: {}, info: "" },
+      EVS: { chapters: ["Life Around Us", "Health and Well-being", "Amazing Planet"], qa: {}, test: {}, info: "Explore nature and note different living beings." }
+    }
+  };
+
+  // Helper to get chapters safely
+  function getSubjectData(className, subject) {
+    const classData = syllabusData[className];
+    if (!classData) return null;
+    if (subject === "General Awareness" && className === "UKG") subject = "GeneralAwareness";
+    if (subject === "EVS" && classData.EVS) return classData.EVS;
+    if (subject === "GeneralAwareness") return classData.GeneralAwareness;
+    return classData[subject] || null;
+  }
+
+  // Populate class and subject dropdowns
+  const classSelect = document.getElementById('classSelect');
+  const subjectSelect = document.getElementById('subjectSelect');
+  const classes = ["UKG", "Class1", "Class2", "Class3", "Class4", "Class5"];
+  classes.forEach(cls => { let opt = document.createElement('option'); opt.value = cls; opt.textContent = cls === "Class1" ? "Class 1" : cls === "Class2" ? "Class 2" : cls === "Class3" ? "Class 3" : cls === "Class4" ? "Class 4" : cls === "Class5" ? "Class 5" : "UKG"; classSelect.appendChild(opt); });
+
+  function updateSubjects() {
+    const selectedClass = classSelect.value;
+    let subjects = [];
+    if (selectedClass === "UKG") subjects = ["English", "Maths", "General Awareness", "EVS"];
+    else if (selectedClass === "Class1") subjects = ["English", "Maths", "EVS", "Hindi"];
+    else if (selectedClass === "Class2") subjects = ["English", "Maths", "EVS"];
+    else if (selectedClass === "Class3") subjects = ["English", "Maths", "EVS"];
+    else if (selectedClass === "Class4") subjects = ["English", "Maths", "EVS"];
+    else subjects = ["English", "Maths", "EVS"];
+    subjectSelect.innerHTML = '';
+    subjects.forEach(sub => { let opt = document.createElement('option'); opt.value = sub; opt.textContent = sub; subjectSelect.appendChild(opt); });
+    renderChapters();
+  }
+
+  let currentChapter = null;
+  let currentSubjectObj = null;
+  let currentClass = "";
+
+  function renderChapters() {
+    const className = classSelect.value;
+    currentClass = className;
+    const subject = subjectSelect.value;
+    const subjectData = getSubjectData(className, subject);
+    if (!subjectData || !subjectData.chapters) {
+      document.getElementById('chapterList').innerHTML = '<div class="info-text">No chapters available for this subject.</div>';
+      currentSubjectObj = null;
+      return;
+    }
+    currentSubjectObj = subjectData;
+    const chapters = subjectData.chapters;
+    const container = document.getElementById('chapterList');
+    container.innerHTML = '';
+    chapters.forEach((ch, idx) => {
+      const div = document.createElement('div');
+      div.className = 'chapter-item';
+      if (currentChapter === ch) div.classList.add('active');
+      div.innerHTML = `<div class="chapter-name"><i class="fas fa-book-open"></i> ${ch}</div>
+                       <div class="pdf-icon"><i class="fas fa-file-pdf"></i></div>`;
+      div.addEventListener('click', () => {
+        document.querySelectorAll('.chapter-item').forEach(el => el.classList.remove('active'));
+        div.classList.add('active');
+        currentChapter = ch;
+        updateRightPanel(ch, subjectData);
+      });
+      container.appendChild(div);
+    });
+    if (chapters.length > 0 && !currentChapter) { currentChapter = chapters[0]; updateRightPanel(chapters[0], subjectData); }
+    else if (currentChapter && subjectData.chapters.includes(currentChapter)) updateRightPanel(currentChapter, subjectData);
+    else if (chapters.length) { currentChapter = chapters[0]; updateRightPanel(chapters[0], subjectData); }
+  }
+
+  function updateRightPanel(chapter, subjectData) {
+    // get custom data
+    const qaMap = subjectData.qa || {};
+    const chapterData = qaMap[chapter] || { qa: [], test: null, info: "" };
+    // QA
+    const qaContainer = document.getElementById('qaContainer');
+    if (chapterData.qa && chapterData.qa.length) {
+      qaContainer.innerHTML = chapterData.qa.map(item => `<div class="qa-item"><div class="qa-question"><span>❓ ${item.q}</span> <i class="fas fa-chevron-down"></i></div><div class="qa-answer">📖 ${item.a}</div></div>`).join('');
+      document.querySelectorAll('.qa-question').forEach(el => {
+        el.addEventListener('click', function(e) { this.nextElementSibling.classList.toggle('show'); });
+      });
+    } else {
+      qaContainer.innerHTML = '<div class="info-text">📘 Sample Q&A will appear here. Add your own questions based on NCERT PDFs.</div>';
+    }
+    // Monthly Test (MCQ)
+    const testContainer = document.getElementById('testContainer');
+    if (chapterData.test && chapterData.test.q) {
+      const t = chapterData.test;
+      testContainer.innerHTML = `<div class="test-card"><div class="test-question">📝 ${t.q}</div><div class="test-options" id="testOptions">${t.options.map(opt => `<span class="test-option" data-val="${opt}">${opt}</span>`).join('')}</div><div id="testFeedback" class="explanation"></div></div>`;
+      const optsDivs = document.querySelectorAll('.test-option');
+      optsDivs.forEach(opt => {
+        opt.addEventListener('click', () => {
+          const selected = opt.getAttribute('data-val');
+          const feedbackDiv = document.getElementById('testFeedback');
+          if (selected === t.correct) {
+            opt.classList.add('correct');
+            feedbackDiv.innerHTML = `✅ Correct! ${t.explanation || 'Well done!'}`;
+          } else {
+            opt.classList.add('wrong');
+            feedbackDiv.innerHTML = `❌ Wrong! Correct answer: ${t.correct}. ${t.explanation || ''}`;
+          }
+          document.querySelectorAll('.test-option').forEach(o => o.style.pointerEvents = 'none');
+        });
+      });
+    } else {
+      testContainer.innerHTML = '<div class="info-text">📋 Add monthly test MCQs based on this chapter. (Customize in code)</div>';
+    }
+    // Extra Info
+    const infoContainer = document.getElementById('infoContainer');
+    const extra = chapterData.info || (subjectData.info ? subjectData.info : "✨ Extra resources: Refer to NCERT official PDFs, practice worksheets, and chapter summary. Download from NCERT official website.");
+    infoContainer.innerHTML = `<div class="info-text"><i class="fas fa-lightbulb"></i> ${extra}</div>`;
+  }
+
+  classSelect.addEventListener('change', () => { currentChapter = null; updateSubjects(); });
+  subjectSelect.addEventListener('change', () => { currentChapter = null; renderChapters(); });
+
+  // TABS
+  const tabs = document.querySelectorAll('.tab-btn');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
+      const tabId = btn.getAttribute('data-tab');
+      if (tabId === 'qa') document.getElementById('qaTab').classList.add('active-tab');
+      else if (tabId === 'test') document.getElementById('testTab').classList.add('active-tab');
+      else document.getElementById('infoTab').classList.add('active-tab');
+    });
+  });
+
+  // init
+  updateSubjects();
+</script>
+</body>
+</html>
