@@ -1,557 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>NCERT CBSE Tutor Hub | Classes UKG - 5th</title>
-  <!-- Font Awesome 6 (free icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Math Study Hub | Chapters 1–7</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: linear-gradient(135deg, #f5f7fa 0%, #e9eef5 100%);
-      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
-      padding: 1.5rem;
-      min-height: 100vh;
-      color: #1e2a3e;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f7ff;
+            color: #1a2c3e;
+            padding: 20px;
+        }
 
-    .app-container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+        .app-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
 
-    /* header */
-    .hero {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .hero h1 {
-      font-size: 2.2rem;
-      background: linear-gradient(135deg, #0f5c4b, #1e7a5c);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .hero h1 i {
-      background: none;
-      -webkit-background-clip: unset;
-      background-clip: unset;
-      color: #1e7a5c;
-    }
-    .hero p {
-      color: #4a5b6e;
-      margin-top: 6px;
-    }
+        /* Header */
+        .app-header {
+            background: linear-gradient(135deg, #0b3b5f, #1b4f72);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
 
-    /* main card */
-    .dashboard {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(6px);
-      border-radius: 48px;
-      padding: 1.8rem;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-    }
+        .app-header h1 {
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
 
-    /* selector row */
-    .selectors {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-      background: #f0f4f9;
-      padding: 1rem;
-      border-radius: 80px;
-    }
-    .select-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: white;
-      padding: 0.3rem 1.2rem;
-      border-radius: 50px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .select-group label {
-      font-weight: 600;
-      color: #1e7a5c;
-    }
-    select {
-      background: #fef9e6;
-      border: 1px solid #d4d9e2;
-      padding: 8px 16px;
-      border-radius: 40px;
-      font-weight: 500;
-      cursor: pointer;
-      outline: none;
-    }
-    select:focus {
-      border-color: #1e7a5c;
-    }
+        .app-header p {
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
 
-    /* main grid: left panel (chapters) + right panel (content) */
-    .tutor-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 1.8rem;
-    }
+        /* Chapter navigation */
+        .chapter-nav {
+            background: white;
+            border-bottom: 2px solid #e2e8f0;
+            padding: 0.75rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #ffffffdd;
+            backdrop-filter: blur(8px);
+        }
 
-    /* chapter list panel */
-    .chapters-panel {
-      background: white;
-      border-radius: 32px;
-      padding: 1.2rem;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e2e8f0;
-    }
-    .chapters-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      border-bottom: 2px solid #e0e7ff;
-      padding-bottom: 0.6rem;
-      margin-bottom: 1rem;
-    }
-    .chapters-header h3 {
-      font-size: 1.3rem;
-      color: #0f5c4b;
-    }
-    .pdf-badge {
-      font-size: 0.7rem;
-      background: #eef2ff;
-      padding: 4px 10px;
-      border-radius: 50px;
-      color: #1e7a5c;
-    }
-    .chapter-list {
-      max-height: 520px;
-      overflow-y: auto;
-      padding-right: 6px;
-    }
-    .chapter-item {
-      background: #f9fafc;
-      margin: 10px 0;
-      padding: 12px 16px;
-      border-radius: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: 1px solid #eef2f6;
-    }
-    .chapter-item:hover {
-      background: #eef4ff;
-      transform: translateX(4px);
-    }
-    .chapter-item.active {
-      background: #1e7a5c15;
-      border-left: 4px solid #1e7a5c;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    .chapter-name {
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .chapter-name i {
-      color: #1e7a5c;
-      font-size: 1.1rem;
-    }
-    .pdf-icon {
-      color: #e53e3e;
-      font-size: 0.9rem;
-    }
+        .chap-btn {
+            background: #eef2f6;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #1e3a5f;
+        }
 
-    /* right panel */
-    .content-panel {
-      background: white;
-      border-radius: 32px;
-      padding: 1.4rem 1.6rem;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    }
-    .section-tabs {
-      display: flex;
-      gap: 12px;
-      border-bottom: 2px solid #e2e8f0;
-      margin-bottom: 1.5rem;
-    }
-    .tab-btn {
-      background: none;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.6rem 1.2rem;
-      border-radius: 30px;
-      cursor: pointer;
-      color: #4b5563;
-      transition: 0.2s;
-    }
-    .tab-btn.active {
-      background: #1e7a5c;
-      color: white;
-      box-shadow: 0 4px 8px rgba(30,122,92,0.2);
-    }
-    .tab-content {
-      display: none;
-      animation: fade 0.2s ease;
-    }
-    .tab-content.active-tab {
-      display: block;
-    }
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(6px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
+        .chap-btn.active {
+            background: #1e5a8a;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
-    /* question answer section */
-    .qa-item {
-      background: #f8fafc;
-      border-radius: 28px;
-      padding: 1rem 1.2rem;
-      margin-bottom: 1rem;
-      border: 1px solid #eef2f8;
-    }
-    .qa-question {
-      font-weight: 700;
-      color: #0f5c4b;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .qa-answer {
-      margin-top: 12px;
-      padding-top: 8px;
-      border-top: 1px dashed #cbd5e1;
-      color: #2d3a48;
-      line-height: 1.5;
-      display: none;
-    }
-    .qa-answer.show {
-      display: block;
-    }
+        .chap-btn:hover {
+            background: #cbd5e1;
+            transform: translateY(-2px);
+        }
 
-    /* monthly test */
-    .test-card {
-      background: linear-gradient(145deg, #fefce8, #fff9e6);
-      border-radius: 28px;
-      padding: 1.4rem;
-    }
-    .test-question {
-      font-weight: 700;
-      margin: 1rem 0 0.5rem;
-    }
-    .test-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 12px 0;
-    }
-    .test-option {
-      background: white;
-      padding: 6px 16px;
-      border-radius: 40px;
-      border: 1px solid #cbd5e1;
-      cursor: pointer;
-      transition: 0.1s;
-    }
-    .test-option.correct {
-      background: #1e7a5c;
-      color: white;
-      border-color: #1e7a5c;
-    }
-    .test-option.wrong {
-      background: #fecaca;
-      color: #991b1b;
-      border-color: #f87171;
-    }
-    .explanation {
-      font-size: 0.9rem;
-      margin-top: 10px;
-      color: #475569;
-    }
-    .info-text {
-      background: #eef2ff;
-      border-radius: 24px;
-      padding: 1rem;
-      margin-top: 1rem;
-      line-height: 1.5;
-    }
+        /* Main content */
+        .content-pane {
+            padding: 2rem;
+        }
 
-    @media (max-width: 780px) {
-      .tutor-grid {
-        grid-template-columns: 1fr;
-      }
-      body {
-        padding: 0.8rem;
-      }
-      .select-group {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-    }
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      color: #5b6e8c;
-    }
-  </style>
+        .chapter-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0b3b5f, #2c6e9e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            border-left: 6px solid #1e5a8a;
+            padding-left: 1rem;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            margin-bottom: 2rem;
+            border: 1px solid #e9f0f5;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .section-header {
+            background: #f8fafc;
+            padding: 1rem 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            border-bottom: 2px solid #dce5ec;
+            color: #0f3b5c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header i {
+            font-size: 1.5rem;
+        }
+
+        .section-body {
+            padding: 1.5rem;
+        }
+
+        /* Q&A styling */
+        .qa-item, .long-item, .mcq-item {
+            background: #fefefe;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 20px;
+            border: 1px solid #e9edf2;
+            transition: 0.1s;
+        }
+
+        .question {
+            font-weight: 700;
+            color: #0b3b5f;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .answer {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: #eef4ff;
+            border-radius: 16px;
+            display: none;
+            color: #1e4663;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+        }
+
+        .mcq-options {
+            margin: 0.75rem 0 0 1rem;
+            list-style: none;
+        }
+
+        .mcq-options li {
+            margin: 6px 0;
+            font-family: monospace;
+        }
+
+        .correct-badge {
+            background: #1f9a8e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        hr {
+            margin: 1rem 0;
+        }
+
+        .test-paper {
+            background: #fff9e8;
+            border-left: 5px solid #f4b942;
+        }
+
+        footer {
+            background: #eef2f6;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            color: #4a627a;
+        }
+
+        @media (max-width: 700px) {
+            .content-pane {
+                padding: 1rem;
+            }
+            .chapter-title {
+                font-size: 1.5rem;
+            }
+            .chap-btn {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="app-container">
-  <div class="hero">
-    <h1><i class="fas fa-graduation-cap"></i> NCERT CBSE Tutor Hub <i class="fas fa-book-open"></i></h1>
-    <p>UKG to 5th Class | Chapter-wise Q&A · Monthly Tests · Study Resources</p>
-  </div>
-
-  <div class="dashboard">
-    <div class="selectors">
-      <div class="select-group">
-        <label><i class="fas fa-layer-group"></i> Class</label>
-        <select id="classSelect"></select>
-      </div>
-      <div class="select-group">
-        <label><i class="fas fa-subject"></i> Subject</label>
-        <select id="subjectSelect"></select>
-      </div>
+    <div class="app-header">
+        <h1>📚 Maths Study Hub</h1>
+        <p>Chapters 1–7 | Short Q&A · MCQs · Long Answers · Test Papers · Simple Explanations</p>
     </div>
 
-    <div class="tutor-grid">
-      <!-- LEFT: CHAPTERS PANEL -->
-      <div class="chapters-panel">
-        <div class="chapters-header">
-          <h3><i class="fas fa-list-ul"></i> 📖 Chapters & PDF</h3>
-          <div class="pdf-badge"><i class="fas fa-file-pdf"></i> NCERT Books</div>
-        </div>
-        <div id="chapterList" class="chapter-list">
-          <!-- dynamic chapters -->
-        </div>
-        <div class="info-text" style="margin-top: 1rem; font-size: 0.8rem;">
-          <i class="fas fa-info-circle"></i> Click any chapter to see Q&A, Monthly Test & extra info.
-        </div>
-      </div>
+    <div class="chapter-nav" id="chapterNav"></div>
 
-      <!-- RIGHT: DETAILS -->
-      <div class="content-panel">
-        <div class="section-tabs">
-          <button class="tab-btn active" data-tab="qa"><i class="fas fa-question-circle"></i> Q&A</button>
-          <button class="tab-btn" data-tab="test"><i class="fas fa-calendar-alt"></i> Monthly Test</button>
-          <button class="tab-btn" data-tab="info"><i class="fas fa-info-circle"></i> Extra Info</button>
-        </div>
+    <div class="content-pane" id="mainContent"></div>
 
-        <!-- Q&A TAB -->
-        <div id="qaTab" class="tab-content active-tab">
-          <div id="qaContainer">Select a chapter to view important questions & answers.</div>
-        </div>
-
-        <!-- MONTHLY TEST TAB -->
-        <div id="testTab" class="tab-content">
-          <div id="testContainer">Choose a chapter to attempt a quick MCQ test.</div>
-        </div>
-
-        <!-- EXTRA INFO TAB -->
-        <div id="infoTab" class="tab-content">
-          <div id="infoContainer">Additional learning resources, tips and explanations appear here.</div>
-        </div>
-      </div>
-    </div>
     <footer>
-      <i class="fas fa-chalkboard-user"></i> NCERT CBSE aligned · UKG to Class 5 · Created for young scholars
+        ⚡ Interactive study material | Tap on any question to reveal answer | Full test papers included
+        <br>📌 More chapters (8–16) can be added easily by extending the data object.
     </footer>
-  </div>
 </div>
 
 <script>
-  // --------------------------------------------------------------
-  // DYNAMIC SYLLABUS DATABASE (UKG to Class 5) with chapters, Q&A, test MCQs, extra info
-  // For each class + subject: chapters (names), plus embedded QA, test, info
-  // --------------------------------------------------------------
-  const syllabusData = {
-    // UKG subjects: English, Maths, General Awareness, EVS
-    UKG: {
-      English: {
-        chapters: ["Letters (AA-ZZ)", "Vowels & Consonants", "Rhyming Words", "This/That & These/Those", "Picture Composition"],
-        qa: {
-          "Letters (AA-ZZ)": { qa: [{ q: "What are the vowels?", a: "A, E, I, O, U are vowels." }, { q: "How many letters in English alphabet?", a: "26 letters." }], test: { q: "Which letter is a vowel?", options: ["B", "C", "A", "D"], correct: "A", explanation: "A, E, I, O, U are vowels." }, info: "Practice writing both capital and small letters daily." },
-          "Vowels & Consonants": { qa: [{ q: "Name any two consonants.", a: "B, C, D etc." }], test: { q: "Which is a consonant?", options: ["A", "E", "M", "I"], correct: "M", explanation: "M is a consonant, rest are vowels." }, info: "Use colorful worksheets to identify vowels." }
+    // ----------------------------- DATA: CHAPTERS 1 TO 7 (from previous material) -----------------------------
+    const chaptersData = {
+        1: {
+            title: "We the Travellers — I (Large Numbers & Place Value)",
+            explanation: "This chapter connects travel with large numbers. Key concepts: place value (up to ten thousands), reading/writing numbers, rounding (nearest ten/hundred/thousand), number patterns, expanded form, digit swap puzzles, and real-life applications like fuel and distance. Also includes fun puzzles (river crossing, pebbles game, two-digit subtraction leading to 9).",
+            shortQA: [
+                { q: "What is the place value of 4 in 10,458?", a: "4 Hundreds = 400." },
+                { q: "Write 20,869 in words.", a: "Twenty thousand eight hundred sixty-nine." },
+                { q: "What is the nearest ten of 2,346?", a: "2,350." },
+                { q: "How many notes of ₹10 are there in ₹7,934?", a: "793 notes (since 7934 ÷ 10 = 793 remainder 4)." },
+                { q: "Arrange in increasing order: 40,347; 34,407; 40,473.", a: "34,407 < 40,347 < 40,473." },
+                { q: "What is the expanded form of 23,004?", a: "20,000 + 3,000 + 0 + 0 + 4." },
+                { q: "Interchange two digits of 10,593 to make a number between 11,000 and 15,000.", a: "Swap 1 and 5 → 50,193 (too high) – better swap 0 and 5 → 15,093." },
+                { q: "What is the nearest thousand of 2,346?", a: "2,000." },
+                { q: "A cyclist covers 15 km in 1 hour. How much in 4 hours?", a: "60 km." },
+                { q: "In the digit puzzle (two different digits), what single digit do you always end up with?", a: "9." }
+            ],
+            mcqs: [
+                { q: "What is 10,001 in words?", options: ["Ten thousand one hundred", "Ten thousand one", "One thousand one", "Ten thousand ten"], answer: "Ten thousand one" },
+                { q: "Which number has 4 ten thousands?", options: ["4,567", "45,678", "40,001", "14,500"], answer: "40,001" },
+                { q: "The nearest hundred of 3,176 is:", options: ["3,100", "3,200", "3,000", "3,180"], answer: "3,200" },
+                { q: "Which is greater: 9,990 or 49,014?", options: ["9,990", "49,014", "Both equal", "Cannot say"], answer: "49,014" },
+                { q: "How many thousands are there in 7,934?", options: ["7", "79", "793", "8"], answer: "7" },
+                { q: "The expanded form of 10,304 is:", options: ["10,000 + 300 + 4", "1,000 + 300 + 4", "10,000 + 3,000 + 4", "10,000 + 30 + 4"], answer: "10,000 + 300 + 4" },
+                { q: "The number 45,867 rounded to nearest thousand is:", options: ["45,000", "46,000", "45,900", "45,800"], answer: "46,000" },
+                { q: "In the river crossing puzzle, which two cannot be left alone together?", options: ["Lion and grass", "Sheep and grass", "Lion and sheep", "Boatman and lion"], answer: "Sheep and grass" },
+                { q: "How many horses were there after the first theft in the King’s Horses puzzle?", options: ["20", "19", "18", "17"], answer: "19" },
+                { q: "What is 90 Tens equal to?", options: ["90", "900", "9,000", "90,000"], answer: "900" }
+            ],
+            longQA: [
+                { q: "Explain with an example how to find the nearest ten, hundred, and thousand of a number. Use 3,176.", a: "Nearest ten: 3,180 (ones 6≥5). Nearest hundred: 3,200 (tens 7≥5). Nearest thousand: 3,000 (hundreds 1<5)." },
+                { q: "A school has 461 girls and 439 boys. How many tempo travellers (capacity 10) are needed?", a: "Total = 900 students. 900 ÷ 10 = 90 tempo travellers." },
+                { q: "Digit swap: Interchange two digits of 48,247 to make (i) as small as possible, (ii) as big as possible.", a: "(i) Smallest: swap first 4 with the 2 → 28,447. (ii) Largest: swap first 4 with 8 → 84,247." },
+                { q: "Why does the two‑digit subtraction puzzle always reach 9?", a: "First difference = 9(a-b) multiple of 9; repeatedly applying process reduces to 9 because all multiples of 9 have digit sum 9." },
+                { q: "Caretaker with 19 horses showed 5 per side of square stable. Explain.", a: "Corner horses counted twice. Place 4 at corners (each on two sides) and 15 along edges. Each side: 2 corners + 3 edge = 5 horses." }
+            ],
+            testPaper: "Section A (MCQs): 1. Which number has 3 ten thousands? (a) 3,456 (b) 34,567 (c) 30,001 (d) 13,500 → c. 2. 10,099 rounded to nearest hundred? → b) 10,100. 3. How many ₹100 notes in ₹65,342? → a) 653. 4. 90 Tens + 83 Ones = ? → a) 983. 5. In digit puzzle, start with 5 and 2, first difference? → a) 27.<br> Section B: 6. Number name 45,045 → Forty-five thousand forty-five. 7. Expand 70,405 → 70,000+400+5. 8. Nearest thousand of 5,789 → 6,000. 9. Descending: 53,231;56,380;51,336;45,858 → 56,380 > 53,231 > 51,336 > 45,858. 10. Train 120km in 2h, in 5h → 300km.<br> Section C: 11. Compare 9,990 and 49,014 using place value → 49,014 has 4 ten thousands, bigger. 12. 1200 students, bus capacity 50 → 24 buses. 13. River crossing steps → take sheep, return; take lion, bring sheep back; take grass, return; take sheep. (7 trips)"
         },
-        GeneralAwareness: { chapters: ["Myself & Body Parts", "Seasons", "Transport", "Animals"], qa: {}, test: {}, info: "" },
-        EVS: { chapters: ["My Family", "My School", "Traffic Rules", "Living & Non-living"], qa: {}, test: {}, info: "" }
-      },
-      // default fill for other subjects
-      Maths: { chapters: ["Numbers 1-100", "Shapes", "Addition", "Subtraction", "Time"], qa: {}, test: {}, info: "Use number charts to practice counting." },
-      GeneralAwareness: { chapters: ["Myself & Body Parts", "Seasons", "Transport", "Animals"], qa: {}, test: {}, info: "Explore flashcards for general awareness." },
-      EVS: { chapters: ["My Family", "My School", "Traffic Rules", "Living & Non-living"], qa: {}, test: {}, info: "Observe things around you and classify." }
-    },
-    Class1: {
-      English: { chapters: ["Two Little Hands", "Greetings", "Picture Time", "The Food We Eat", "Anandi's Rainbow"], qa: { "Two Little Hands": { qa: [{ q: "What can we do with our hands?", a: "We can clap, wave and hold things." }], test: { q: "How many hands do you have?", options: ["1","2","3","4"], correct: "2", explanation: "Humans have two hands." }, info: "Sing the 'Two Little Hands' poem daily." } }, test: {}, info: "" },
-      Maths: { chapters: ["Finding the Furry Cat", "Shapes Around Us", "Mango Treat", "Making 10", "Fun with Numbers"], qa: { "Shapes Around Us": { qa: [{ q: "Name a shape with 3 sides.", a: "Triangle" }], test: { q: "Which shape has no corners?", options: ["Square","Circle","Triangle","Rectangle"], correct: "Circle", explanation: "Circle is round with no corners." }, info: "Collect objects of different shapes from home." } }, test: {}, info: "" },
-      EVS: { chapters: ["My Body", "Food We Eat", "Clothes", "Festivals"], qa: {}, test: {}, info: "" },
-      Hindi: { chapters: ["अ से अनार", "आ से आम", "इ से इमली"], qa: {}, test: {}, info: "" }
-    },
-    Class2: {
-      English: { chapters: ["First Day at School", "Haldi's Adventure", "I am Lucky", "The Wind and the Sun", "Strange Talk"], qa: { "First Day at School": { qa: [{ q: "How did the child feel on first day?", a: "Nervous but excited." }], test: { q: "What did the child draw?", options: ["A car","A house","A flower","A tree"], correct: "A house", explanation: "In the poem, the child drew a house." }, info: "Talk about your own first school day." } }, test: {}, info: "" },
-      Maths: { chapters: ["Counting in Groups", "Shapes and Patterns", "Addition", "Subtraction", "Time and Calendar"], qa: {}, test: {}, info: "Practice mental math for 2-digit numbers." },
-      EVS: { chapters: ["Our Neighbourhood", "Plants Around Us", "Water", "Air"], qa: {}, test: {}, info: "" }
-    },
-    Class3: {
-      English: { chapters: ["Colours", "Badal and Moti", "Best Friends", "Out in the Garden", "Talking Toys"], qa: { "Best Friends": { qa: [{ q: "Who are the best friends in the story?", a: "A boy and his dog." }], test: { q: "What quality do best friends share?", options: ["Jealousy","Trust","Anger","Fear"], correct: "Trust", explanation: "Friendship is built on trust and care." }, info: "Write about your best friend." } }, test: {}, info: "" },
-      Maths: { chapters: ["Where to Look From", "Fun With Numbers", "Give and Take", "Long and Short", "Smart Charts"], qa: {}, test: {}, info: "Use play-doh to understand shapes and numbers." },
-      EVS: { chapters: ["Poonam’s Day out", "The Plant Fairy", "Water O’ Water!", "Our First School"], qa: {}, test: {}, info: "Observe different plants in your garden." }
-    },
-    Class4: {
-      English: { chapters: ["Wake Up!", "Neha's Alarm Clock", "Noses", "The Little Fir Tree", "Alice in Wonderland"], qa: { "Neha's Alarm Clock": { qa: [{ q: "Why did Neha wake up late?", a: "Her alarm clock did not ring." }], test: { q: "What time did Neha wake up?", options: ["6 AM","7 AM","8 AM","9 AM"], correct: "7 AM", explanation: "The story shows she woke up at 7 AM." }, info: "Learn the importance of punctuality." } }, test: {}, info: "" },
-      Maths: { chapters: ["Shapes Around Us", "Hide and Seek", "Pattern Around Us", "Thousands Around Us", "Data Handling"], qa: { "Thousands Around Us": { qa: [{ q: "How many hundreds make 1000?", a: "10 hundreds." }], test: { q: "What is the place value of 7 in 7,892?", options: ["7","70","700","7000"], correct: "7000", explanation: "7 is in thousands place." }, info: "Practice writing 4-digit numbers." } }, test: {}, info: "" },
-      EVS: { chapters: ["The World Around Us", "Food for Health", "Our Environment"], qa: {}, test: {}, info: "Collect pictures of different environments." }
-    },
-    Class5: {
-      English: { chapters: ["Ice Cream Man", "Wonderful Waste", "Flying Together", "Robinson Crusoe", "Sing a Song of People"], qa: { "Ice Cream Man": { qa: [{ q: "What does the ice-cream man sell?", a: "Ice creams, kulfi and cold drinks." }], test: { q: "Which flavour is mentioned?", options: ["Chocolate","Vanilla","Strawberry","Mango"], correct: "Vanilla", explanation: "The poem mentions vanilla ice cream." }, info: "Write a short poem about summer." } }, test: {}, info: "" },
-      Maths: { chapters: ["The Fish Tale", "Shapes And Angles", "How Many Squares", "Parts and Wholes", "Boxes and Sketches"], qa: { "Parts and Wholes": { qa: [{ q: "If you cut a pizza into 4 equal parts, each part is called?", a: "One-fourth or quarter." }], test: { q: "Which fraction is equal to 1/2?", options: ["2/4","3/4","1/4","4/4"], correct: "2/4", explanation: "2/4 simplifies to 1/2." }, info: "Practice fractions using daily objects." } }, test: {}, info: "" },
-      EVS: { chapters: ["Life Around Us", "Health and Well-being", "Amazing Planet"], qa: {}, test: {}, info: "Explore nature and note different living beings." }
+        2: {
+            title: "Fractions",
+            explanation: "Fractions represent parts of a whole. Equivalent fractions (1/2 = 2/4). Compare fractions: same denominator → compare numerator; same numerator → smaller denominator = larger fraction. Fractions greater than 1 (improper) convert to mixed numbers. Reference to 1/2 helps comparison.",
+            shortQA: [
+                { q: "Why can’t we say 1/3 of big chocolate > 1/2 of small chocolate?", a: "Wholes must be same to compare fractions." },
+                { q: "Two equivalent fractions for 1/3.", a: "2/6, 3/9." },
+                { q: "Which is greater: 3/5 or 3/7?", a: "3/5 (same numerator, smaller denominator)." },
+                { q: "What is 5/2 as mixed number?", a: "2 1/2." },
+                { q: "How many 1/8 pieces make 1/4?", a: "2 pieces." },
+                { q: "Is 7/6 less than or greater than 1?", a: "Greater than 1." },
+                { q: "Fill: 2/3 = ?/9", a: "6/9." },
+                { q: "Which is bigger: 4/10 or 4/6?", a: "4/6." },
+                { q: "Radhika ate 6 pieces of 1/2 paratha. How many parathas?", a: "3 parathas." },
+                { q: "What fraction is halfway between 0 and 1/2?", a: "1/4." }
+            ],
+            mcqs: [
+                { q: "Which fraction is equivalent to 1/4?", options: ["2/6", "3/12", "4/10", "5/20"], answer: "3/12" },
+                { q: "3/5 ___ 3/8 – correct sign?", options: ["<", ">", "=", "Cannot say"], answer: ">" },
+                { q: "How many 1/12 pieces make 1/3?", options: ["2", "3", "4", "6"], answer: "4" },
+                { q: "Which fraction is greater than 1?", options: ["5/8", "8/9", "9/8", "2/3"], answer: "9/8" },
+                { q: "2/3 = ?/15", options: ["5", "6", "10", "12"], answer: "10" },
+                { q: "Which fraction is less than 1/2?", options: ["4/7", "5/9", "3/8", "6/11"], answer: "3/8" },
+                { q: "Sevi ate 1/3 chikki, Shami rest. Who ate more?", options: ["Sevi", "Shami", "Both equal", "Cannot say"], answer: "Shami" },
+                { q: "7/4 as mixed number:", options: ["1 3/4", "1 1/2", "1 1/4", "2 1/4"], answer: "1 3/4" },
+                { q: "Not equivalent to 1/2:", options: ["2/4", "3/6", "4/8", "5/12"], answer: "5/12" },
+                { q: "5/3 lies between:", options: ["0 and 1", "1 and 2", "2 and 3", "3 and 4"], answer: "1 and 2" }
+            ],
+            longQA: [
+                { q: "Find equivalent fractions for 2/5 (three examples).", a: "4/10, 6/15, 8/20." },
+                { q: "Compare 7/8 and 5/6 using common denominator and reference to 1.", a: "Common denom 24: 21/24 vs 20/24 → 7/8 > 5/6. Reference: 7/8 is 1/8 from 1, 5/6 is 1/6 from 1, 1/8<1/6 → 7/8 closer to 1 so larger." },
+                { q: "Raman’s family ate 7 pieces of 1/4 paratha each for 5 members. Total parathas?", a: "Each 7/4 = 1.75, total 5×1.75 = 8.75 = 8 3/4 parathas." },
+                { q: "Pizza problem: 2 pizzas cut into 3 slices each. Dadiji and Dadaji give to Raman; Maa and Baba give to Radhika; Raman gives 1 to Radhika. Final shares?", a: "Raman: 3-1=2 slices = 2/3 pizza; Radhika: 3+1=4 slices = 1 1/3 pizza." },
+                { q: "How many 1/12 pieces make 1/2, 1/3, 1/4, 1/6?", a: "6, 4, 3, 2 respectively." }
+            ],
+            testPaper: "Section A: 1. 3/4 equivalent to? a)6/8 b)5/6 → a. 2. Greater:5/7 or 5/9 → a)5/7. 3. 9/4 as mixed → 2 1/4. 4. How many 1/8 in 3/4 → b)6. 5. Less than 1/2 → c)3/7.<br> Section B: 6. Two equivalent for 3/7 → 6/14,9/21. 7. Compare 8/9 and 7/8 using 1 → 8/9 larger. 8. 13/5 = 2 3/5. 9. Show 5/4 on number line. 10. 5/6 = 15/18.<br> Section C: 11. Diagram 1/3=2/6=3/9. 12. 9 pieces of 1/4 = 2 1/4 parathas. 13. 4/9 vs 5/12 → LCM 36: 16/36 >15/36 so 4/9 > 5/12."
+        },
+        3: {
+            title: "Angles as Turns",
+            explanation: "Angles measure turns. 1/4 turn = right angle (90°). Less than 1/4 = acute. Between 1/4 and 1/2 = obtuse. 1/2 turn = straight angle. Clockwise vs anti-clockwise. Use fractions of a full turn to describe angles.",
+            shortQA: [
+                { q: "What is a right angle?", a: "A quarter turn (1/4)." },
+                { q: "How many quarter turns make a half turn?", a: "Two." },
+                { q: "Half turn clockwise from North faces?", a: "South." },
+                { q: "Angle less than quarter turn?", a: "Acute." },
+                { q: "Minute hand moves 15 minutes = ? fraction of turn?", a: "1/4 turn." },
+                { q: "What is a straight angle?", a: "Half turn (1/2)." },
+                { q: "Opposite of clockwise?", a: "Anti-clockwise." },
+                { q: "How many 1/8 turns in a full turn?", a: "8." },
+                { q: "3/8 turn is what type of angle?", a: "Obtuse (between 1/4 and 1/2)." },
+                { q: "Can two acute turns make another acute turn?", a: "Sometimes, depends on sizes." }
+            ],
+            mcqs: [
+                { q: "A full turn equals:", options: ["1/2 turn", "1/4 turn", "1 whole turn", "3/4 turn"], answer: "1 whole turn" },
+                { q: "Exactly a quarter turn is:", options: ["Acute", "Right angle", "Obtuse", "Straight"], answer: "Right angle" },
+                { q: "Half turn is also called:", options: ["Right angle", "Acute", "Straight angle", "Full turn"], answer: "Straight angle" },
+                { q: "Minute hand from 12 to 3 = ? turn", options: ["1/2", "1/4", "1/3", "1/12"], answer: "1/4" },
+                { q: "Largest turn: 1/8, 1/4, 1/2, 3/4", options: [], answer: "3/4 turn" },
+                { q: "Face East, 1/4 anti-clockwise faces?", options: ["North", "South", "West", "East"], answer: "North" },
+                { q: "Acute angle example:", options: ["1/2 turn", "1/4 turn", "1/8 turn", "3/4 turn"], answer: "1/8 turn" },
+                { q: "How many 1/8 turns in 1/4 turn?", options: ["1", "2", "4", "8"], answer: "2" },
+                { q: "Clock hands move in which direction?", options: ["Anti-clockwise", "Clockwise", "Straight", "Reverse"], answer: "Clockwise" },
+                { q: "1/2 turn clockwise from South faces?", options: ["East", "West", "North", "South"], answer: "North" }
+            ],
+            longQA: [
+                { q: "Explain acute, right, obtuse, straight angles using fractions.", a: "Acute <1/4, right=1/4, obtuse between 1/4&1/2, straight=1/2." },
+                { q: "Facing North, turn clockwise: 1/4, then 1/2, then 1/4. Final direction?", a: "North." },
+                { q: "Minute hand starts at 12, makes 1/6 + 1/12 + 1/4 turn. Total fraction, minutes, final position?", a: "Total=1/2 turn=30 minutes → points at 6." },
+                { q: "Using 1/8 turn tool, measure 3/8 turn. Acute/obtuse?", a: "3/8 is obtuse (2/8=1/4, 4/8=1/2)." },
+                { q: "Child makes 3/4 clockwise then 1/2 anti-clockwise. Net turn? Start East final direction?", a: "Net = 1/4 clockwise → South." }
+            ],
+            testPaper: "Section A: 1. 1/2 turn = straight angle. 2. 1/8 turns in 1/2 turn = 4. 3. 1/4 clockwise from West = North. 4. Less than 1/4 turn = acute. 5. 45 minutes = 3/4 turn.<br> Section B: 6. Right angle = 1/4 turn. 7. Two 1/8 turns = 1/4 turn. 8. Half anti-clockwise from South = North. 9. Example half turn: door hinge; full turn: giant wheel. 10. 5/8 turn >1/2 → more than straight angle (reflex).<br> Section C: 11. 1/3 turn = 20 minutes, points at 4. 12. Clockwise vs anti-clockwise examples. 13. Net 3/8 clockwise from East → South-West."
+        },
+        4: {
+            title: "We the Travellers — II (Addition & Subtraction)",
+            explanation: "Addition and subtraction of large numbers (up to 5 digits) using place value, regrouping. Relationship between addition & subtraction. Patterns in consecutive numbers, palindromes, even/odd properties. Quick sums to 100/1000, quick subtraction of 9/99.",
+            shortQA: [
+                { q: "Sum of 49 and 89?", a: "138" },
+                { q: "If 46+21=67, then 67-46= ?", a: "21" },
+                { q: "Sum of 67+68+69", a: "204" },
+                { q: "Lorry 28L + 75L = ?", a: "103L" },
+                { q: "Difference 82-37", a: "45" },
+                { q: "1,855 + 1,862 km", a: "3,717 km" },
+                { q: "32 + ? = 100", a: "68" },
+                { q: "Palindromes between 100-200", a: "101,111,121,131,141,151,161,171,181,191" },
+                { q: "Sum of two odd numbers?", a: "Even (13+9=22)" },
+                { q: "Torch 23rd press (start OFF)", a: "ON (odd number)" }
+            ],
+            mcqs: [
+                { q: "15+79 =", options: ["84","94","104","114"], answer: "94" },
+                { q: "If 198-98=100, then 100+?=198", options: ["98","100","198","0"], answer: "98" },
+                { q: "Difference between successive sums of 4 consecutive numbers", options: ["2","3","4","5"], answer: "4" },
+                { q: "North–South Corridor length", options: ["3,617 km","3,717 km","3,817 km","3,717 m"], answer: "3,717 km" },
+                { q: "Palindrome", options: ["1234","8558","789","1001"], answer: "8558" },
+                { q: "67-9 quick subtraction", options: ["58","59","57","68"], answer: "58" },
+                { q: "Sum of two evens", options: ["Odd","Even","Either","Cannot say"], answer: "Even" },
+                { q: "Truck loaded 3675+2850 kg = ?", options: ["6425","6525","6625","6525 g"], answer: "6525 kg" },
+                { q: "877 + ? = 1000", options: ["123","122","124","133"], answer: "123" },
+                { q: "23rd torch press (start OFF)", options: ["OFF","ON","Broken","Dim"], answer: "ON" }
+            ],
+            longQA: [
+                { q: "Relation between addition/subtraction from 872-672=200", a: "200+672=872, 872-200=672." },
+                { q: "Sum of 5 consecutive numbers starting 237", a: "1195 (middle 239 ×5)" },
+                { q: "Mary ₹12,540 -3275 +4900 -2645 -1275 = ?", a: "₹10,245" },
+                { q: "Quick method to make 1000 from 877", a: "1000-877=123" },
+                { q: "Mountain peaks: highest, difference between highest & lowest, etc.", a: "Everest 8848; difference 8848-5642=3206m; Elbrus to Kanchenjunga: 8586-5642=2944m; born 1993." }
+            ],
+            testPaper: "Section A: 1.46+99=145. 2.70-43=27. 3.1234+12345=13579. 4.Palindrome:12321. 5.Even+Odd=Odd.<br> Section B: 6.5205+4840=10045. 7.15324-11780=3544. 8.242-78=164;242-164=78. 9.48+49+50=147. 10.8250-6525=1725kg.<br> Section C: 11.85300-54000=31300 more. 12. Odd+Odd even example. 13. Total 3 peaks 25919m, avg 8640m."
+        },
+        5: {
+            title: "Far and Near (Length Measurement)",
+            explanation: "Units: mm, cm, m, km. 10mm=1cm, 100cm=1m, 1000m=1km. Convert between units. Add/subtract lengths. Multiply/divide lengths in real-life contexts (cloth, road, race). Estimate heights and distances.",
+            shortQA: [
+                { q: "How many mm in 1 cm?", a: "10 mm" },
+                { q: "4 cm 5 mm = ? mm", a: "45 mm" },
+                { q: "1 km = ? m", a: "1000 m" },
+                { q: "3 km race water stations every 500 m → how many?", a: "5 stations (500,1000,1500,2000,2500)" },
+                { q: "Which is longer: 456 cm or 5 m?", a: "5 m = 500 cm, so 5 m longer." },
+                { q: "89 mm = ? cm ? mm", a: "8 cm 9 mm" },
+                { q: "Saji walked 3km450m + 4km650m = ?", a: "8 km 100 m" },
+                { q: "6 m 34 cm = ? cm", a: "634 cm" },
+                { q: "12 km 600 m road in 6 equal days → per day?", a: "2 km 100 m" },
+                { q: "1 inch ≈ ? cm", a: "2.5 cm" }
+            ],
+            mcqs: [
+                { q: "Height of India Gate 42 ___", options: ["cm","m","km","mm"], answer: "m" },
+                { q: "100 cm = ?", options: ["1 km","10 m","1 m","1000 mm"], answer: "1 m" },
+                { q: "2 cm 3 mm = ? mm", options: ["23","203","230","20"], answer: "23" },
+                { q: "Longest Vivek Express distance", options: ["4187 km","4187 m","4187 cm","4187 mm"], answer: "4187 km" },
+                { q: "1 m 80 cm per shirt, for 20 shirts = ?", options: ["20m80cm","36m","36m80cm","360m"], answer: "36 m" },
+                { q: "Water stations in 3km race every 500m", options: ["5","6","7","4"], answer: "5" },
+                { q: "5m cloth costs ₹100, cost of 1m = ?", options: ["20","50","100","5"], answer: "20" },
+                { q: "6 km 1480 m = ?", options: ["7 km 480 m","6 km 1480 m","7 km 480 m","7 km 480 m"], answer: "7 km 480 m" },
+                { q: "Difference 2m and 245cm = ?", options: ["45 cm","45 m","45 mm","450 cm"], answer: "45 cm" },
+                { q: "Smallest: 1 cm, 10 mm, 0.1 m", options: [], answer: "1 cm (same as 10 mm but 0.1 m=10 cm bigger)" }
+            ],
+            longQA: [
+                { q: "Convert: 234 cm to mm, 514 mm to cm&mm, 397 m to cm, 6870 m to km&m, 29km30m to m", a: "2340mm, 51cm4mm, 39700cm, 6km870m, 29030m" },
+                { q: "Bhopal to Sanchi 48km700m, waterfall 17km900m from Bhopal. Distance waterfall to Sanchi?", a: "30km800m" },
+                { q: "Road 12km600m in 6 days → per day; then 14km700m at 2km100m per day = ? days", a: "2km100m per day; 7 days" },
+                { q: "Anita: 1m thread for 50cm border. Thread for 5m border? cost ₹50/m total?", a: "10m thread, ₹500" },
+                { q: "Vivek Express: total length? distance Vijayawada to Jalpaiguri? Guwahati to Coimbatore?", a: "4187km, 1817km, 3119km" }
+            ],
+            testPaper: "Section A: 1.10mm=1cm. 2. Largest:0.25km=250m. 3. 5 shirts =9m. 4. Well depth in m. 5.5km-3km500m=1km500m.<br> Section B: 6.5792cm=57m92cm. 7.3m75cm+2m25cm=6m. 8. 12km/300m=40 children. 9.5inches=12.5cm. 10. 11mm vs 1cm =1mm bigger.<br> Section C: 11. Gondola total 4km950m, up&down 9km900m. 12. 63m-16m75cm=46m25cm. 13. 3-storey ~9m=900cm=9000mm."
+        },
+        6: {
+            title: "The Dairy Farm (Multiplication)",
+            explanation: "Multiplication strategies: doubling/halving, nearest multiple, splitting into parts (distributive), column multiplication. Multiply by 10,100,1000. Patterns in multiplication. Real-life problems (cows, milk, ghee, books, auditorium).",
+            shortQA: [
+                { q: "20 × 50 = ?", a: "1000" },
+                { q: "5 × 18 using doubling/halving", a: "10×9=90" },
+                { q: "4 × 19 using nearest multiple", a: "80-4=76" },
+                { q: "Monthly waste 35kg → yearly?", a: "420 kg" },
+                { q: "150 kg compost saved at ₹24/kg → savings?", a: "₹3600" },
+                { q: "268 villagers × 4 cows min = ?", a: "1072 cows" },
+                { q: "30 × 20 using place value", a: "600" },
+                { q: "35 rows × 42 seats = ?", a: "1470" },
+                { q: "10 × 1000 = ?", a: "10000" },
+                { q: "King's reward: Minister1 5 coins doubled daily for 7 days = ?", a: "320 coins" }
+            ],
+            mcqs: [
+                { q: "8×5 equals", options: ["5×8","10×4","40","All"], answer: "All" },
+                { q: "Doubling/halving 14×3 = ?", options: ["28×1.5","7×6","21×2","can't"], answer: "7×6" },
+                { q: "100×90 = ?", options: ["900","9000","90000","900000"], answer: "9000" },
+                { q: "Theater 8 rows 12 seats, half filled = ?", options: ["96","48","24","12"], answer: "48" },
+                { q: "35×12 distributive =", options: ["420","both a&b","none"], answer: "both a&b" },
+                { q: "16×25 easy method", options: ["(16×100)/4","16×20+16×5","both","400"], answer: "both" },
+                { q: "20×1000 = ?", options: ["2000","20000","200000","2000000"], answer: "20000" },
+                { q: "King's reward: most coins after 7 days", options: ["Minister1","Minister2","Minister3","equal"], answer: "Minister3" },
+                { q: "11×54 pattern = ?", options: ["594","544","594","584"], answer: "594" },
+                { q: "574×125 = ?", options: ["71750","71750","70000","72000"], answer: "71750" }
+            ],
+            longQA: [
+                { q: "Doubling/halving: 16×45 and 25×12", a: "16×45 = 8×90=720; 25×12 = 50×6=300" },
+                { q: "453 Gir cows ×13 litres = ? (distributive)", a: "453×13 = 453×10 + 453×3 = 4530+1359=5889L" },
+                { q: "36 boxes ×48 books = ? two methods", a: "1728; (30×48=1440,6×48=288) or (36×50=1800-72=1728)" },
+                { q: "King's reward final coins each", a: "Minister1:320, Minister2:2187, Minister3:15625 → Minister3 wins" },
+                { q: "Anjali bulbs ₹25 ×15 + tube lights ₹34×12. Total? Change from ₹1000?", a: "375+408=783, change ₹217" }
+            ],
+            testPaper: "Section A: 1.40×500=20000. 2.14×21=294. 3. Not equal to 16×25: 30×15=450. 4. 453×13=5889. 5.1000×100=100000.<br> Section B: 6.25×16=400. 7.99×15=1485. 8.574×125. 9.8×3000=24000. 10.17×24=408.<br> Section C: 11.86×162=13932. 12.3×18=6×9=54, 14×15=210. 13.Collection 11352, expenses 2879, profit 8473."
+        },
+        7: {
+            title: "Shapes and Patterns",
+            explanation: "Tessellation, regular polygons, triangles (equilateral, isosceles, scalene), quadrilaterals (kite, parallelogram, rectangle, square). Tangram, cube nets, painting cubes, icosahedron, dodecahedron. Circle designs and weaving patterns.",
+            shortQA: [
+                { q: "What does tessellate mean?", a: "Cover without gaps or overlaps." },
+                { q: "Two regular polygons that tessellate", a: "Equilateral triangle, square." },
+                { q: "Isosceles triangle definition", a: "At least two equal sides." },
+                { q: "In a kite, which sides equal?", a: "Two pairs of adjacent sides." },
+                { q: "Opposite sides equal & all angles 90° → which quadrilateral?", a: "Rectangle." },
+                { q: "How many equilateral triangles around a point?", a: "6" },
+                { q: "Tangram has how many pieces?", a: "7" },
+                { q: "Two perpendicular diameters in a circle form which quadrilateral?", a: "Square." },
+                { q: "Faces of icosahedron?", a: "20" },
+                { q: "27-cube painted: cubes with 3 faces painted?", a: "8" }
+            ],
+            mcqs: [
+                { q: "Which does NOT tessellate alone?", options: ["Equilateral triangle","Square","Regular pentagon","Regular hexagon"], answer: "Regular pentagon" },
+                { q: "All sides equal triangle = ?", options: ["Isosceles","Scalene","Equilateral","Right"], answer: "Equilateral" },
+                { q: "In parallelogram, equal sides are:", options: ["Adjacent","Opposite","All","None"], answer: "Opposite" },
+                { q: "Regular hexagons around a point: how many?", options: ["3","4","5","6"], answer: "3" },
+                { q: "Kite has equal:", options: ["Opposite sides","Adjacent sides","All sides","No equal"], answer: "Adjacent sides" },
+                { q: "Tangram includes:", options: ["5 triangles,1 square,1 para","2 large,1 medium,2 small,1 square,1 para","7 triangles","4 squares,3 triangles"], answer: "2 large,1 medium,2 small,1 square,1 para" },
+                { q: "Dodecahedron faces:", options: ["12","20","8","6"], answer: "12" },
+                { q: "Which is NOT regular polygon?", options: ["Square","Equilateral triangle","Rectangle","Regular hexagon"], answer: "Rectangle" },
+                { q: "Quadrilateral from any two diameters of a circle", options: ["Square","Rectangle","Rhombus","Kite"], answer: "Rectangle" },
+                { q: "27-cube painted: two-face painted cubes count?", options: ["8","12","6","0"], answer: "12" }
+            ],
+            longQA: [
+                { q: "Difference between regular pentagon and hexagon tessellation", a: "Pentagon interior angle 108° does not divide 360; hexagon 120° divides 360 → tessellates." },
+                { q: "Draw a kite, explain if it's a parallelogram", a: "Kite not parallelogram because opposite sides not parallel/equal." },
+                { q: "Tangram rectangle construction", a: "Use two large triangles as base, arrange others." },
+                { q: "27-cube painted: counts for 3,2,1,0 faces", a: "8,12,6,1" },
+                { q: "Weaving pattern Row1:1 under,1 over; Row2:1 over,1 under → result", a: "Checkerboard plain weave." }
+            ],
+            testPaper: "Section A: 1. Regular hexagon tessellates. 2. Isosceles triangle. 3. Dodecahedron 12 faces. 4. Kite adjacent sides equal. 5. Parallelogram opposite sides parallel.<br> Section B: 6. 6 triangles (60° each). 7. Regular pentagon no tessellation. 8. Square = all sides equal. 9. 2×2×2 cube all 8 cubes 3 faces painted. 10. Sketch kite.<br> Section C: 11. Tessellation examples, pentagon fails. 12. Use 4 triangles from rhombus to make parallelogram. 13. 4×4×4 cube: 3 faces=8, 2 faces=24, 1 face=24, 0 faces=8."
+        }
+    };
+
+    // Render navigation & content
+    const navContainer = document.getElementById('chapterNav');
+    const contentContainer = document.getElementById('mainContent');
+    let activeChapter = 1;
+
+    function buildNav() {
+        navContainer.innerHTML = '';
+        for (let i = 1; i <= 7; i++) {
+            const btn = document.createElement('button');
+            btn.textContent = `Ch ${i}`;
+            btn.classList.add('chap-btn');
+            if (i === activeChapter) btn.classList.add('active');
+            btn.addEventListener('click', () => {
+                activeChapter = i;
+                renderChapter(activeChapter);
+                document.querySelectorAll('.chap-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+            navContainer.appendChild(btn);
+        }
     }
-  };
 
-  // Helper to get chapters safely
-  function getSubjectData(className, subject) {
-    const classData = syllabusData[className];
-    if (!classData) return null;
-    if (subject === "General Awareness" && className === "UKG") subject = "GeneralAwareness";
-    if (subject === "EVS" && classData.EVS) return classData.EVS;
-    if (subject === "GeneralAwareness") return classData.GeneralAwareness;
-    return classData[subject] || null;
-  }
-
-  // Populate class and subject dropdowns
-  const classSelect = document.getElementById('classSelect');
-  const subjectSelect = document.getElementById('subjectSelect');
-  const classes = ["UKG", "Class1", "Class2", "Class3", "Class4", "Class5"];
-  classes.forEach(cls => { let opt = document.createElement('option'); opt.value = cls; opt.textContent = cls === "Class1" ? "Class 1" : cls === "Class2" ? "Class 2" : cls === "Class3" ? "Class 3" : cls === "Class4" ? "Class 4" : cls === "Class5" ? "Class 5" : "UKG"; classSelect.appendChild(opt); });
-
-  function updateSubjects() {
-    const selectedClass = classSelect.value;
-    let subjects = [];
-    if (selectedClass === "UKG") subjects = ["English", "Maths", "General Awareness", "EVS"];
-    else if (selectedClass === "Class1") subjects = ["English", "Maths", "EVS", "Hindi"];
-    else if (selectedClass === "Class2") subjects = ["English", "Maths", "EVS"];
-    else if (selectedClass === "Class3") subjects = ["English", "Maths", "EVS"];
-    else if (selectedClass === "Class4") subjects = ["English", "Maths", "EVS"];
-    else subjects = ["English", "Maths", "EVS"];
-    subjectSelect.innerHTML = '';
-    subjects.forEach(sub => { let opt = document.createElement('option'); opt.value = sub; opt.textContent = sub; subjectSelect.appendChild(opt); });
-    renderChapters();
-  }
-
-  let currentChapter = null;
-  let currentSubjectObj = null;
-  let currentClass = "";
-
-  function renderChapters() {
-    const className = classSelect.value;
-    currentClass = className;
-    const subject = subjectSelect.value;
-    const subjectData = getSubjectData(className, subject);
-    if (!subjectData || !subjectData.chapters) {
-      document.getElementById('chapterList').innerHTML = '<div class="info-text">No chapters available for this subject.</div>';
-      currentSubjectObj = null;
-      return;
+    function renderQA(items, type) {
+        if (!items) return '';
+        return items.map((item, idx) => `
+            <div class="qa-item">
+                <div class="question" onclick="toggleAnswer(this)">
+                    ${idx+1}. ${item.q} <span class="toggle-icon">▼</span>
+                </div>
+                <div class="answer">${item.a}</div>
+            </div>
+        `).join('');
     }
-    currentSubjectObj = subjectData;
-    const chapters = subjectData.chapters;
-    const container = document.getElementById('chapterList');
-    container.innerHTML = '';
-    chapters.forEach((ch, idx) => {
-      const div = document.createElement('div');
-      div.className = 'chapter-item';
-      if (currentChapter === ch) div.classList.add('active');
-      div.innerHTML = `<div class="chapter-name"><i class="fas fa-book-open"></i> ${ch}</div>
-                       <div class="pdf-icon"><i class="fas fa-file-pdf"></i></div>`;
-      div.addEventListener('click', () => {
-        document.querySelectorAll('.chapter-item').forEach(el => el.classList.remove('active'));
-        div.classList.add('active');
-        currentChapter = ch;
-        updateRightPanel(ch, subjectData);
-      });
-      container.appendChild(div);
-    });
-    if (chapters.length > 0 && !currentChapter) { currentChapter = chapters[0]; updateRightPanel(chapters[0], subjectData); }
-    else if (currentChapter && subjectData.chapters.includes(currentChapter)) updateRightPanel(currentChapter, subjectData);
-    else if (chapters.length) { currentChapter = chapters[0]; updateRightPanel(chapters[0], subjectData); }
-  }
 
-  function updateRightPanel(chapter, subjectData) {
-    // get custom data
-    const qaMap = subjectData.qa || {};
-    const chapterData = qaMap[chapter] || { qa: [], test: null, info: "" };
-    // QA
-    const qaContainer = document.getElementById('qaContainer');
-    if (chapterData.qa && chapterData.qa.length) {
-      qaContainer.innerHTML = chapterData.qa.map(item => `<div class="qa-item"><div class="qa-question"><span>❓ ${item.q}</span> <i class="fas fa-chevron-down"></i></div><div class="qa-answer">📖 ${item.a}</div></div>`).join('');
-      document.querySelectorAll('.qa-question').forEach(el => {
-        el.addEventListener('click', function(e) { this.nextElementSibling.classList.toggle('show'); });
-      });
-    } else {
-      qaContainer.innerHTML = '<div class="info-text">📘 Sample Q&A will appear here. Add your own questions based on NCERT PDFs.</div>';
+    function renderMCQs(items) {
+        if (!items) return '';
+        return items.map((item, idx) => `
+            <div class="mcq-item">
+                <div class="question" style="cursor:default">${idx+1}. ${item.q}</div>
+                <ul class="mcq-options">
+                    ${item.options.map(opt => `<li>• ${opt}</li>`).join('')}
+                </ul>
+                <div class="correct-badge" onclick="this.nextElementSibling.style.display='block'">🔍 Show correct answer</div>
+                <div class="answer" style="display:none; margin-top:8px">✅ Correct answer: ${item.answer}</div>
+            </div>
+        `).join('');
     }
-    // Monthly Test (MCQ)
-    const testContainer = document.getElementById('testContainer');
-    if (chapterData.test && chapterData.test.q) {
-      const t = chapterData.test;
-      testContainer.innerHTML = `<div class="test-card"><div class="test-question">📝 ${t.q}</div><div class="test-options" id="testOptions">${t.options.map(opt => `<span class="test-option" data-val="${opt}">${opt}</span>`).join('')}</div><div id="testFeedback" class="explanation"></div></div>`;
-      const optsDivs = document.querySelectorAll('.test-option');
-      optsDivs.forEach(opt => {
-        opt.addEventListener('click', () => {
-          const selected = opt.getAttribute('data-val');
-          const feedbackDiv = document.getElementById('testFeedback');
-          if (selected === t.correct) {
-            opt.classList.add('correct');
-            feedbackDiv.innerHTML = `✅ Correct! ${t.explanation || 'Well done!'}`;
-          } else {
-            opt.classList.add('wrong');
-            feedbackDiv.innerHTML = `❌ Wrong! Correct answer: ${t.correct}. ${t.explanation || ''}`;
-          }
-          document.querySelectorAll('.test-option').forEach(o => o.style.pointerEvents = 'none');
-        });
-      });
-    } else {
-      testContainer.innerHTML = '<div class="info-text">📋 Add monthly test MCQs based on this chapter. (Customize in code)</div>';
+
+    function renderLong(items) {
+        if (!items) return '';
+        return items.map((item, idx) => `
+            <div class="qa-item">
+                <div class="question" onclick="toggleAnswer(this)">
+                    ${idx+1}. ${item.q} <span class="toggle-icon">▼</span>
+                </div>
+                <div class="answer">${item.a}</div>
+            </div>
+        `).join('');
     }
-    // Extra Info
-    const infoContainer = document.getElementById('infoContainer');
-    const extra = chapterData.info || (subjectData.info ? subjectData.info : "✨ Extra resources: Refer to NCERT official PDFs, practice worksheets, and chapter summary. Download from NCERT official website.");
-    infoContainer.innerHTML = `<div class="info-text"><i class="fas fa-lightbulb"></i> ${extra}</div>`;
-  }
 
-  classSelect.addEventListener('change', () => { currentChapter = null; updateSubjects(); });
-  subjectSelect.addEventListener('change', () => { currentChapter = null; renderChapters(); });
+    function renderChapter(ch) {
+        const data = chaptersData[ch];
+        if (!data) return;
+        const html = `
+            <div class="chapter-title">📖 ${data.title}</div>
+            <div class="section-card">
+                <div class="section-header">🧠 Simple Explanation</div>
+                <div class="section-body">${data.explanation}</div>
+            </div>
+            <div class="section-card">
+                <div class="section-header">❓ 10 Short Questions & Answers</div>
+                <div class="section-body">${renderQA(data.shortQA)}</div>
+            </div>
+            <div class="section-card">
+                <div class="section-header">📋 10 Multiple Choice Questions</div>
+                <div class="section-body">${renderMCQs(data.mcqs)}</div>
+            </div>
+            <div class="section-card">
+                <div class="section-header">✍️ 5 Long Questions with Answers</div>
+                <div class="section-body">${renderLong(data.longQA)}</div>
+            </div>
+            <div class="section-card test-paper">
+                <div class="section-header">📝 Full Test Paper (Sections A, B, C)</div>
+                <div class="section-body">${data.testPaper.replace(/\n/g, '<br>')}</div>
+            </div>
+        `;
+        contentContainer.innerHTML = html;
+    }
 
-  // TABS
-  const tabs = document.querySelectorAll('.tab-btn');
-  tabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabs.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
-      const tabId = btn.getAttribute('data-tab');
-      if (tabId === 'qa') document.getElementById('qaTab').classList.add('active-tab');
-      else if (tabId === 'test') document.getElementById('testTab').classList.add('active-tab');
-      else document.getElementById('infoTab').classList.add('active-tab');
-    });
-  });
+    window.toggleAnswer = function(el) {
+        const answerDiv = el.nextElementSibling;
+        if (answerDiv) answerDiv.classList.toggle('show');
+    };
 
-  // init
-  updateSubjects();
+    buildNav();
+    renderChapter(1);
 </script>
 </body>
 </html>
